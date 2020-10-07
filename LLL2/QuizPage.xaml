@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LLL2.QuizPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                 Clicked="HomeClick"
+                             
+                                 />
+                </Frame>
+                
+            </ContentView>
+
+            <Label
+                x:Name="quiztext"
+                FontSize="Title"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            
+            <Button
+                x:Name="answer1"
+                CornerRadius="45"
+            BackgroundColor="LightSeaGreen"
+            TextColor="White"
+            Padding="16"
+            Clicked="Ans1Click"/>
+            <Button
+                x:Name="answer2"
+                CornerRadius="45"
+            BackgroundColor="LightSeaGreen"
+            TextColor="White"
+            Padding="16" 
+            Clicked="Ans2Click"/>
+            <Button
+                x:Name="answer3"
+                CornerRadius="45"
+            BackgroundColor="LightSeaGreen"
+            TextColor="White"
+            Padding="16"
+            Clicked="Ans3Click"/>
+            <Button
+                x:Name="answer4"
+                CornerRadius="45"
+            BackgroundColor="LightSeaGreen"
+            TextColor="White"
+            Padding="16" 
+            Clicked="Ans4Click"/>
+            
+            <Frame Padding="16" BackgroundColor="Transparent"/>
+
+            <Button     
+            Text ="Back"
+            CornerRadius="45"
+            BackgroundColor="#2f6fff"
+            TextColor="White"
+            Padding="16"
+            Clicked="HomeClick"
+                    />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
