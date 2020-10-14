@@ -12,18 +12,21 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchDict : ContentPage
     {
+        private Database Database;
         public SearchDict()
         {
             InitializeComponent();
+            this.Database = new Database();
         }
+
         private void DictClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new DictPage();
         }
-        private async void SearchClick(object sender, EventArgs e)
+        private void SearchClick(object sender, EventArgs e)
         {
             string entered = searchEntry.Text;
-            List<DictData> newlist = await App.Database.GetDictAsync();
+            List<DictData> newlist = this.Database.GetDictList();
 
             listView.ItemsSource = FilterList(newlist, entered);
         }
@@ -47,10 +50,10 @@ namespace LLL2
             return input;
         }
 
-        protected override async void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = await App.Database.GetDictAsync();
+            listView.ItemsSource = this.Database.GetDictList();
             
         }
     }

@@ -22,7 +22,7 @@
                 FontSize="Title"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            
+           
             <Button
                 x:Name="answer1"
                 CornerRadius="45"
@@ -60,7 +60,7 @@
             BackgroundColor="#2f6fff"
             TextColor="White"
             Padding="16"
-            Clicked="HomeClick"
+            Clicked="BackClick"
                     />
         </StackLayout>
     </ContentPage.Content>

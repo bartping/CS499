@@ -1,30 +1,27 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace LLL2
 {
     public partial class App : Application
     {
-        static Database database;
-
-        public static Database Database
+        // public static Database database;
+        public Database dataAccess;
+        
+        public interface IDatabaseConnection
         {
-            get
-            {
-                if (database == null)
-                {
-                    database = new Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "dictdata.db3"));
-                }
-                return database;
-            }
+            SQLite.SQLiteConnection DbConnection();
         }
 
         public App()
-        {
+         {
             InitializeComponent();
+            dataAccess = new Database();
             App.Current.MainPage = new MainPage();
-        }
+         }
+        
 
         protected override void OnStart()
         {

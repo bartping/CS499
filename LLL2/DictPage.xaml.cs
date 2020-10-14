@@ -30,6 +30,14 @@ namespace LLL2
         {
             App.Current.MainPage = new AddDict();
         }
+        private void ImpClick(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new Import();
+        }
+        private void CatClick(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new CatPage();
+        }
         protected override bool OnBackButtonPressed()
         {
             App.Current.MainPage = new MainPage();

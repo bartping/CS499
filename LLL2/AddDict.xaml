@@ -22,15 +22,17 @@
                Placeholder="Spanish" />
             <Button Text="Add to Dictionary"
                 Clicked="OnButtonClicked" />
- 
-            <Button   VerticalOptions="EndAndExpand"  
-            Text ="Back"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-            Clicked="DictClick"
-                    />
+
+            <Label x:Name="descText" />
+            <Button
+                VerticalOptions="EndAndExpand"  
+                Text ="Back"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="DictClick"
+            />
 
         </StackLayout>
     </ContentPage.Content>

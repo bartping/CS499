@@ -26,7 +26,7 @@ namespace LLL2
 
         private void QuizClick(object sender, EventArgs e)
         {
-            App.Current.MainPage = new QuizPage();
+            App.Current.MainPage = new QuizLand();
         }
     }
 }
