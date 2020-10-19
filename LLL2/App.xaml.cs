@@ -8,7 +8,7 @@ namespace LLL2
     public partial class App : Application
     {
         // public static Database database;
-        public Database dataAccess;
+        public static Database dataAccess;
         
         public interface IDatabaseConnection
         {
@@ -19,6 +19,7 @@ namespace LLL2
          {
             InitializeComponent();
             dataAccess = new Database();
+            Import.DoImport(LLLSettings.impPath);
             App.Current.MainPage = new MainPage();
          }
         

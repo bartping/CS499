@@ -12,12 +12,10 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDict : ContentPage
     {
-        private Database Database;
         public AddDict()
         {
             InitializeComponent();
-            this.Database = new Database();
-            descText.Text = Database.getDocsPath();
+            descText.Text = App.dataAccess.getDocsPath();
         }
         private void DictClick(object sender, EventArgs e)
         {
@@ -39,7 +37,7 @@ namespace LLL2
         {
             if (!string.IsNullOrWhiteSpace(engEntry.Text) && !string.IsNullOrWhiteSpace(espEntry.Text))
             {
-                this.Database.SaveEntry(new DictData
+                App.dataAccess.SaveEntry(new DictData
                 {
                     English = engEntry.Text,
                     Spanish = espEntry.Text,

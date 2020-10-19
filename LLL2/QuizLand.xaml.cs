@@ -12,18 +12,16 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuizLand : ContentPage
     {
-        private Database Database;
         public List<CatList> CatList;
 
         public QuizLand()
         {
             InitializeComponent();
-            this.Database = new Database();
             fillPick();
         }
         private void fillPick()
         {
-            CatList = Database.CategoryList();
+            CatList = App.dataAccess.CategoryList();
             int n = CatList.Count;
 
             for (int i = 0; i < n; i++)

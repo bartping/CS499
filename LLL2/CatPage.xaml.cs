@@ -12,11 +12,9 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CatPage : ContentPage
     {
-        private Database Database;
         public CatPage()
         {
             InitializeComponent();
-            this.Database = new Database();
         }
         protected override bool OnBackButtonPressed()
         {
@@ -30,7 +28,7 @@ namespace LLL2
         private void SearchClick(object sender, EventArgs e)
         {
             string entered = searchEntry.Text;
-            List<CatData> newlist = this.Database.GetCatList();
+            List<CatData> newlist = App.dataAccess.GetCatList();
             listView.ItemsSource = FilterList(newlist, entered);
         }
         private void HomeClick(object sender, EventArgs e)
@@ -50,7 +48,7 @@ namespace LLL2
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            listView.ItemsSource = this.Database.GetCatList();
+            listView.ItemsSource = App.dataAccess.GetCatList();
 
         }
     }

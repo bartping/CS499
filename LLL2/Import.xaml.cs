@@ -16,15 +16,12 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Import : ContentPage
     {
-        protected string impPath = "http://cs.indstate.edu/~bping1/lll/esp.lex"; /* Default import path. Can be any web address */
-        private Database Database;
-
+        
         public Import()
         {
             InitializeComponent();
-            this.Database = new Database();
-            usePath.Text = impPath;         //populate fields on xaml page
-            usePath.Placeholder = impPath;
+            usePath.Text = LLLSettings.impPath;         //populate fields on xaml page
+            usePath.Placeholder = LLLSettings.impPath;
         }
         private void ImpClick(object sender, EventArgs e)
         {
@@ -37,12 +34,13 @@ namespace LLL2
             App.Current.MainPage = new DictPage();
         }
 
-        protected void DoImport(string doPath)                /* Import dictionary and category data from a tab-delimited text file */
+        public static void DoImport(string doPath)                /* Import dictionary and category data from a tab-delimited text file */
         {
 
             WebClient client = new WebClient();              /* start a background client so we can go get our file */
             Stream stream = client.OpenRead(doPath);
             StreamReader reader = new StreamReader(stream);
+           
 
             string line;    // Make some placeholder string values
             string newEng;  // new English word
@@ -67,7 +65,7 @@ namespace LLL2
                     j++;
                 }
 
-                List<DictData> currDict = Database.GetDictList();
+                List<DictData> currDict = App.dataAccess.GetDictList();
                 List<DictData> match;
                 int wordID;
                 match = currDict.Where(obj => obj.English.Contains(newEng) || obj.Spanish.Contains(newSpan)).ToList();
@@ -76,7 +74,7 @@ namespace LLL2
 
                 if (match.Count > 0)
                 {
-                    this.Database.SaveEntry(new DictData
+                    App.dataAccess.SaveEntry(new DictData
                     {   // If we found a match, update it.
                         ID = match[0].ID,
                         English = newEng,
@@ -88,7 +86,7 @@ namespace LLL2
                 }
                 else
                 {
-                    wordID = this.Database.SaveEntry(new DictData
+                    wordID = App.dataAccess.SaveEntry(new DictData
                     {   //Not found? Create an entry
                         English = newEng,
                         Spanish = newSpan,
@@ -99,14 +97,14 @@ namespace LLL2
 
                 /* Now, let's do the categories */
 
-                List<CatData> currCat = Database.GetCatList();
+                List<CatData> currCat = App.dataAccess.GetCatList();
                 List<CatData> catMatch;
                 for (i = 0; i < j; i++)
                 {
                     catMatch = currCat.Where(obj => obj.Category.Contains(cats[i]) && obj.Dict_ID.Equals(wordID)).ToList();
                     if (catMatch.Count > 0)
                         continue; //Category already set for this word, go to the next
-                    this.Database.SaveCatEntry(new CatData
+                    App.dataAccess.SaveCatEntry(new CatData
                     {
                         Dict_ID = wordID,
                         Category = cats[i]

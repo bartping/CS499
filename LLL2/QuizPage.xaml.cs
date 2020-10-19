@@ -12,13 +12,11 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuizPage : ContentPage         /* Establish initial page state */
     {
-        private Database Database;                      /* Get the Database data to use for this page */
         public Question QuestionList = new Question();  /* Establish a new Question and list of answers */
 
         public QuizPage()                               /* Things to run when the page is initialized */
         {
             InitializeComponent();
-            this.Database = new Database();             /* Get the Database so we can use it here */
         }
 
         private void HomeClick(object sender, EventArgs e)  /* Home button/logo click event */
@@ -54,12 +52,12 @@ namespace LLL2
             if (QuestionList.Ans1 == QuestionList.Answer) //Right answer
             {
                 quiztext.Text = "Correct!";
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 answer1.BackgroundColor = Color.Green;
             }
             else
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";           //Wrong answer
                 answer1.BackgroundColor = Color.Red;
             }
@@ -75,13 +73,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans2 == QuestionList.Answer)
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer2.BackgroundColor = Color.Green;
             }
             else
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer2.BackgroundColor = Color.Red;
             }
@@ -96,13 +94,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans3 == QuestionList.Answer)
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer3.BackgroundColor = Color.Green;
             }
             else
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer3.BackgroundColor = Color.Red;
             }
@@ -117,13 +115,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans4 == QuestionList.Answer)
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer4.BackgroundColor = Color.Green;
             }
             else
             {
-                Database.doScore(Database.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer4.BackgroundColor = Color.Red;
             }
@@ -148,7 +146,7 @@ namespace LLL2
         protected void QuestionText()               /* Retrieve a word from the word list and generate a multiple choice question */
         {
             string useCat = LLLSettings.currentCategory;
-            List<AllData> FullDict = this.Database.GetAllList(useCat);
+            List<AllData> FullDict = App.dataAccess.GetAllList(useCat);
             List<AllData> filtered;  // dictionary list filtered by category
             filtered = FullDict.Where(obj => obj.Category.Equals(useCat)).ToList();
 

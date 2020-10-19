@@ -17,6 +17,7 @@ namespace LLL2
         public static string currentCategory = "All";
         public static int MAXFAMILIARITY = 10;
         public static int MAXIMPORTCAT = 5;
+        public static string impPath = "http://cs.indstate.edu/~bping1/lll/esp.lex"; /* Default import path. Can be any web address */
     }
     
 }

@@ -75,10 +75,10 @@
     <ImageAsset Include="Assets.xcassets\Images.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Images.imageset\lll1.png">
+    <ImageAsset Include="Assets.xcassets\Images.imageset\lll11.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Images.imageset\lll2.png">
+    <ImageAsset Include="Assets.xcassets\Images.imageset\lll_icon.png">
       <Visible>false</Visible>
     </ImageAsset>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

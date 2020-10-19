@@ -948,3 +948,6 @@ C:\Users\blp246\Source\Repos\CS499\LLL2.Android\obj\Debug\90\stamp\_ConvertResou
 C:\Users\blp246\Source\Repos\CS499\LLL2.Android\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 C:\Users\blp246\Source\Repos\CS499\LLL2.Android\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 C:\Users\blp246\Source\Repos\CS499\LLL2.Android\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+C:\Users\blp246\source\repos\CS499\LLL2.Android\obj\Debug\90\res\drawable\lll_icon.png
+C:\Users\blp246\source\repos\CS499\LLL2.Android\obj\Debug\90\res\drawable\lll_horiz.png
+C:\Users\blp246\source\repos\CS499\LLL2.Android\obj\Debug\90\res\drawable\lll_foreground.png
