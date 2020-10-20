@@ -22,15 +22,8 @@ C:\Users\blp246\source\repos\CS499\LLL2\bin\Debug\netstandard2.0\LLL2.dll
 C:\Users\blp246\source\repos\CS499\LLL2\bin\Debug\netstandard2.0\ref\LLL2.dll
 C:\Users\blp246\source\repos\CS499\LLL2\bin\Debug\netstandard2.0\LLL2.pdb
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.csprojAssemblyReference.cache
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\AddDict.xaml.g.cs
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\App.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\CatPage.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPage.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\Import.xaml.g.cs
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\QuizLand.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\QuizPage.xaml.g.cs
-C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\SearchDict.xaml.g.cs
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.AssemblyInfoInputs.cache
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.AssemblyInfo.cs
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.csproj.CoreCompileInputs.cache
@@ -38,3 +31,11 @@ C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.dll
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\ref\LLL2.dll
 C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\LLL2.pdb
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\AddDict.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\CatPage.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\DictPage.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\Import.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\SearchDict.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\QuizPages\QuizLand.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\QuizPages\QuizPage.xaml.g.cs
+C:\Users\blp246\source\repos\CS499\LLL2\obj\Debug\netstandard2.0\DictPages\WordPage.xaml.g.cs

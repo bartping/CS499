@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LLL2.SearchDict">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                 Clicked="HomeClick"
+                             
+                                 />
+                </Frame>
+            </ContentView>
+
+            <Entry x:Name="searchEntry"
+               Placeholder="Search"
+               TextChanged="SearchClick"
+                   />
+
+            <ListView x:Name="listView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ContentView Grid.Row="1" Grid.Column="1">
+                                    <ContentView.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"  Tapped ="WordClick" Command="{Binding WordClick}" CommandParameter="{Binding ID}"/>
+                                    </ContentView.GestureRecognizers>
+                                    <Label 
+                                        Text="{Binding ID}"
+                                        FontAttributes="Bold" FontSize="Medium" />
+                                        
+                                </ContentView>
+                                <ContentView Grid.Row="1" Grid.Column="2">
+                                    <Label 
+                                        Text="{Binding English}"
+                                        FontSize="Medium" />
+                                </ContentView>
+                                <ContentView  Grid.Row="1" Grid.Column="3">
+                                        <Label
+                                        FontSize="Medium"
+                                        Text="{Binding Spanish}" VerticalOptions="End" />
+                                 </ContentView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                  
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button     
+            Text ="Back"
+            CornerRadius="45"
+            BackgroundColor="#2f6fff"
+            TextColor="White"
+            Padding="16"
+            Clicked="DictClick"
+                    />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

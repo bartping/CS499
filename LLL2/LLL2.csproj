@@ -20,25 +20,28 @@
 
 
   <ItemGroup>
-    <EmbeddedResource Update="AddDict.xaml">
+    <EmbeddedResource Update="DictPages\AddDict.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="CatPage.xaml">
+    <EmbeddedResource Update="DictPages\CatPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DictPage.xaml">
+    <EmbeddedResource Update="DictPages\DictPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Import.xaml">
+    <EmbeddedResource Update="DictPages\Import.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="QuizLand.xaml">
+    <EmbeddedResource Update="DictPages\WordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="QuizPage.xaml">
+    <EmbeddedResource Update="QuizPages\QuizLand.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="SearchDict.xaml">
+    <EmbeddedResource Update="QuizPages\QuizPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="DictPages\SearchDict.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
