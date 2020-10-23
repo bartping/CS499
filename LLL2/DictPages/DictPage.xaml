@@ -4,23 +4,12 @@
              x:Class="LLL2.DictPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <ContentView>
-                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
-                    <ImageButton Source="lll2"
-                                 BackgroundColor="Transparent"
-                                 Aspect="AspectFit"
-                                 CornerRadius="0"
-                                 Clicked="HomeClick"
-                             
-                                 />
-                </Frame>
-                
-            </ContentView>
+            
             <Label Text="This is where all of our dictionary information will go. Probably should do an import module for the bulk data"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
             <Button     
-            Text ="Add to Dictionary"
+            Text ="View/Add to Dictionary"
             CornerRadius="45"
             BackgroundColor="#2f6fff"
             TextColor="White"
@@ -37,24 +26,7 @@
     
             Clicked="ImpClick"
                     />
-            <Button     
-            Text ="Categories"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-    
-            Clicked="CatClick"
-                    />
-            <Button     
-            Text ="Search Dictionary"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-
-            Clicked="SearchDictClick"
-                    />
+            
             <Button     
             Text ="Back"
             CornerRadius="45"
@@ -63,6 +35,18 @@
             Padding="16"
             Clicked="HomeClick"
                     />
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                 Clicked="HomeClick"
+                             
+                                 />
+                </Frame>
+
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

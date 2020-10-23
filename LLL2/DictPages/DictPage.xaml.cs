@@ -22,10 +22,7 @@ namespace LLL2
         {
             App.Current.MainPage = new MainPage();
         }
-        private void SearchDictClick(object sender, EventArgs e)
-        {
-            App.Current.MainPage = new SearchDict();
-        }
+        
         private void AddDictClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new AddDict();
@@ -33,10 +30,6 @@ namespace LLL2
         private void ImpClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new Import();
-        }
-        private void CatClick(object sender, EventArgs e)
-        {
-            App.Current.MainPage = new CatPage();
         }
         protected override bool OnBackButtonPressed()
         {

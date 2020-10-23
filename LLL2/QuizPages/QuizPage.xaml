@@ -4,18 +4,7 @@
              x:Class="LLL2.QuizPage">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <ContentView>
-                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
-                    <ImageButton Source="lll2"
-                                 BackgroundColor="Transparent"
-                                 Aspect="AspectFit"
-                                 CornerRadius="0"
-                                 Clicked="HomeClick"
-                             
-                                 />
-                </Frame>
-                
-            </ContentView>
+
 
             <Label
                 x:Name="quiztext"
@@ -62,6 +51,18 @@
             Padding="16"
             Clicked="BackClick"
                     />
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                 Clicked="HomeClick"
+                             
+                                 />
+                </Frame>
+
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

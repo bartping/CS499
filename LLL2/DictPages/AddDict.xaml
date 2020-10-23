@@ -4,6 +4,66 @@
              x:Class="LLL2.AddDict">
     <ContentPage.Content>
         <StackLayout Padding="10">
+           
+           
+            <Entry x:Name="engEntry"
+               Placeholder="English"
+               Text=""
+                   TextChanged="SearchClick"/>
+            <Entry x:Name="espEntry"
+               Placeholder="Spanish"
+               Text=""
+                   TextChanged="SearchClick"/>
+            
+            <Button Text="Add to Dictionary"
+                Clicked="AddClick" />
+            <ListView x:Name="listView" ItemSelected="listView_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentView Grid.Row="1" Grid.Column="1">
+                                    <Label 
+                                        Text="{Binding English}"
+                                        FontSize="Medium" />
+                                </ContentView>
+                                <ContentView  Grid.Row="1" Grid.Column="2">
+                                    <Label
+                                        FontSize="Medium"
+                                        Text="{Binding Spanish}" VerticalOptions="End" />
+                                </ContentView>
+                                <ContentView Grid.Row="1" Grid.Column="3">
+
+                                    <Label 
+                                        Text="{Binding Familiarity}"
+                                        FontAttributes="Bold" FontSize="Medium" />
+
+                                </ContentView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- <Label x:Name="descText" /> -->
+            <Button
+                VerticalOptions="EndAndExpand"  
+                Text ="Back"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="DictClick"
+            />
             <ContentView>
                 <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
                     <ImageButton Source="lll2"
@@ -15,25 +75,6 @@
                                  />
                 </Frame>
             </ContentView>
-           
-            <Entry x:Name="engEntry"
-               Placeholder="English" />
-            <Entry x:Name="espEntry"
-               Placeholder="Spanish" />
-            <Button Text="Add to Dictionary"
-                Clicked="OnButtonClicked" />
-
-            <Label x:Name="descText" />
-            <Button
-                VerticalOptions="EndAndExpand"  
-                Text ="Back"
-                CornerRadius="45"
-                BackgroundColor="#2f6fff"
-                TextColor="White"
-                Padding="16"
-                Clicked="DictClick"
-            />
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

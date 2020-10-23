@@ -21,7 +21,7 @@ namespace LLL2
         }
         private void fillPick()
         {
-            CatList = App.dataAccess.CategoryList();
+            CatList = App.dataAccess.CategoryList(1);
             int n = CatList.Count;
 
             for (int i = 0; i < n; i++)

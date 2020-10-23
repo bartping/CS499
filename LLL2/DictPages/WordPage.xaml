@@ -3,18 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LLL2.WordPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+           
+            <Label x:Name="EngWord"/>
+            <Label x:Name="SpanWord"/>
+            <Button 
+                     Text="Delete Selected"
+                     Padding="-5"
+                     BackgroundColor="Red"
+                     TextColor="white"
+                     CornerRadius="90"
+                     FontSize="Small"
+                     Clicked="DelClick" />
+            <ListView x:Name="catlistView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ContentView Grid.Row="1" Grid.Column="1">
+                                    <Label 
+                                        Text="{Binding Category}"
+                                        FontSize="Medium" />
+                                </ContentView>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Entry x:Name="catEntry"
+               Placeholder="Add Category.." />
+            <Picker x:Name="catpick"
+                Title="Choose a Category"
+                SelectedIndexChanged="pickChange"
+                />
             <Button     
-            Text ="Back"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-            Clicked="SearchClick"
-                    />
+                Text ="Add"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="AddCatClick"
+                />
+            
+            <Frame Padding="16" BackgroundColor="Transparent" 
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="CenterAndExpand"
+                />
+            
+            <Button     
+                Text ="Back"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="BackClick"
+                />
+            
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                     />
+                </Frame>
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

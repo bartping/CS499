@@ -4,16 +4,7 @@
              x:Class="LLL2.MainPage">
 
     <StackLayout  Padding = "10">
-        <ContentView>
-
-            <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
-                <ImageButton Source="lll2"
-                                 BackgroundColor="Transparent"
-                                 Aspect="AspectFit"
-                                 CornerRadius="0"
-                                 />
-            </Frame>
-        </ContentView>
+        
 
         <Label Text="Increase your familiarity with a language. Words and things. Take a quiz."
                 VerticalOptions="CenterAndExpand" 
@@ -35,5 +26,16 @@
             Clicked="DictClick"
                     />
         <Frame BackgroundColor="Transparent" Padding="16"></Frame>
+
+        <ContentView>
+
+            <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                 />
+            </Frame>
+        </ContentView>
     </StackLayout>
 </ContentPage>

@@ -4,17 +4,7 @@
              x:Class="LLL2.Import">
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <ContentView>
-                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
-                    <ImageButton Source="lll2"
-                                 BackgroundColor="Transparent"
-                                 Aspect="AspectFit"
-                                 CornerRadius="0"
-                                
-                             
-                                 />
-                </Frame>
-            </ContentView>
+           
 
             <Entry x:Name="usePath"
                />
@@ -31,7 +21,17 @@
                 Padding="16"
                 Clicked="DictClick"
             />
-
+            <ContentView>
+                <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
+                    <ImageButton Source="lll2"
+                                 BackgroundColor="Transparent"
+                                 Aspect="AspectFit"
+                                 CornerRadius="0"
+                                
+                             
+                                 />
+                </Frame>
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

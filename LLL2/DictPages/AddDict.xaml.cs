@@ -6,34 +6,54 @@ using System.Threading.Tasks;
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net.Http.Headers;
 
 namespace LLL2
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDict : ContentPage
     {
+        private List<DictData> dictlist = App.dataAccess.GetDictList();
+
         public AddDict()
         {
             InitializeComponent();
-            descText.Text = App.dataAccess.getDocsPath();
+            listView.ItemsSource = FilterList(this.dictlist);
         }
+
         private void DictClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new DictPage();
         }
+
         private void HomeClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new MainPage();
         }
-        protected override bool OnBackButtonPressed()
+
+        private void SearchClick(object sender, EventArgs e)
         {
-            App.Current.MainPage = new DictPage();
-            return true;
+            List<DictData> newList = new List<DictData>();
+            listView.ItemsSource = FilterList(newList);
         }
 
- 
+        private void listView_ItemSelected(object sender, EventArgs e)
+        {
+            DictData selectedWord = listView.SelectedItem as DictData;
+            App.Current.MainPage = new WordPage(selectedWord);
+        }
 
-        async void OnButtonClicked(object sender, EventArgs e)
+        private List<DictData> FilterList(List<DictData> input)
+        {
+
+            List<DictData> matched = this.dictlist.Where(obj => obj.Spanish.Contains(espEntry.Text) && obj.English.Contains(engEntry.Text)).ToList();
+            if (matched != null)
+                return matched;
+
+            return input;
+        }
+
+        private void AddClick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(engEntry.Text) && !string.IsNullOrWhiteSpace(espEntry.Text))
             {
@@ -44,13 +64,18 @@ namespace LLL2
                     Familiarity = 0,
                     LastQuiz = DateTime.MinValue
                 });
-
+                App.dataAccess = new Database(); //refresh database on change
                 engEntry.Text = espEntry.Text = string.Empty;
             }
             else
-                await DisplayAlert("Required", "You must enter both English and Spanish words.", "OK");
+                DisplayAlert("Required", "You must enter both English and Spanish words.", "OK");
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new DictPage();
+            return true;
+        }
 
     }
 }

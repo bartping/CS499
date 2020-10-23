@@ -4,6 +4,34 @@
              x:Class="LLL2.QuizLand">
     <ContentPage.Content>
         <StackLayout Padding="10">
+            <Picker x:Name="catpick"
+                Title="Choose a Category"
+                SelectedIndex="0"
+                SelectedIndexChanged="pickChange"
+                    />
+
+            <Frame Padding="16" BackgroundColor="Transparent" 
+                    HorizontalOptions="CenterAndExpand" 
+                    VerticalOptions="CenterAndExpand"/>
+            <Button     
+                Text ="Take Quiz"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="QuizClick"
+                    />
+            <Frame Padding="16" BackgroundColor="Transparent"/>
+
+            <Button     
+                Text ="Back"
+                CornerRadius="45"
+                BackgroundColor="#2f6fff"
+                TextColor="White"
+                Padding="16"
+                Clicked="HomeClick"
+                    />
+
             <ContentView>
                 <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
                     <ImageButton Source="lll2"
@@ -16,37 +44,6 @@
                 </Frame>
 
             </ContentView>
-            <Picker x:Name="catpick"
-                Title="Choose a Category"
-                SelectedIndex="0"
-                SelectedIndexChanged="pickChange"
-                    >
-                <Picker.Items>
-                    
-
-                </Picker.Items>
-            </Picker>
-            <Frame Padding="16" BackgroundColor="Transparent" 
-                    HorizontalOptions="CenterAndExpand" 
-                    VerticalOptions="CenterAndExpand"/>
-            <Button     
-            Text ="Take Quiz"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-            Clicked="QuizClick"
-                    />
-            <Frame Padding="16" BackgroundColor="Transparent"/>
-
-            <Button     
-            Text ="Back"
-            CornerRadius="45"
-            BackgroundColor="#2f6fff"
-            TextColor="White"
-            Padding="16"
-            Clicked="HomeClick"
-                    />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

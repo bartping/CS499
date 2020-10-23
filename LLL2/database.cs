@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
+using System.ComponentModel;
 
 /*
  * This class contains all of the basic data loading, structures, and CRUD operation functions
@@ -107,17 +108,43 @@ namespace LLL2
             return queryList;
         }
 
-        public List<CatList> CategoryList() /* Makes a list of all current categories */
+        public List<CatList> CategoryList(int includeAll) /* Makes a list of all current categories */
         {
             List<CatList> queryList = new List<CatList>();
             List<string> catdata = GetCatList().Select(obj => obj.Category).Distinct().ToList(); //string list of distinct categories from GetCatList()
 
-            int n = catdata.Count; //number of categories we found
+            //int n = catdata.Count; //number of categories we found
 
-            queryList.Add(new CatList { Category = "All" }); //Add an 'All' category
 
-            for (int i = 0; i < n; i++)
-                    queryList.Add(new CatList { Category =  catdata[i]}); //Add each category value to the new public list
+            //Add to the querylist in alphabetical order
+            foreach (var newcat in catdata)
+            {
+                if (queryList.Count() == 0)
+                {
+                    queryList.Add(new CatList { Category = newcat }); //Add each category value to the new public list
+                    continue;
+                }
+                int i = 0;
+                int added = 0;
+                foreach (var inlist in queryList)
+                {
+                    if (String.Compare(newcat, inlist.Category) > 0)
+                    {
+                        i++;
+                        continue;
+                    }
+                    else
+                    {
+                        queryList.Insert(i,new CatList { Category = newcat });
+                        added = 1;
+                        break;
+                    }
+                }
+                if(added == 0)
+                    queryList.Add(new CatList { Category = newcat });
+            }
+            if(includeAll==1)
+                queryList.Insert(0, new CatList { Category = "All" }); //Add an 'All' category to the beginning
 
             return queryList; //return the list
         }
@@ -174,6 +201,20 @@ namespace LLL2
             }
         }
 
+        public int DeleteCatEntry(CatData catInstance) /* delete an entry by ID */
+        {
+            var id = catInstance.ID;
+            if (id != 0)
+            {
+                lock (collisionLock)
+                {
+                    database.Delete<CatData>(id);
+                }
+            }
+            this.catData.Remove(catInstance);
+            return id;
+        }
+
         public int DeleteEntry(DictData dictInstance) /* delete an entry by ID */
         {
             var id = dictInstance.ID;
@@ -181,6 +222,9 @@ namespace LLL2
             {
                 lock (collisionLock)
                 {
+                    List<CatData> removeList = this.catData.Where(obj => obj.Dict_ID.Equals(id)).ToList();
+                    foreach (CatData category in removeList)
+                        DeleteCatEntry(category);
                     database.Delete<DictData>(id);
                 }
             }
