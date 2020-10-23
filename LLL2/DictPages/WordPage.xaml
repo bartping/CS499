@@ -32,7 +32,7 @@
                                 <ContentView Grid.Row="1" Grid.Column="1">
                                     <Label 
                                         Text="{Binding Category}"
-                                        FontSize="Medium" />
+                                        FontSize="Default" />
                                 </ContentView>
 
                             </Grid>

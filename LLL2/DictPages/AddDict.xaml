@@ -21,7 +21,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="5">
+                            <Grid Padding="-2">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*" />
@@ -34,18 +34,18 @@
                                 <ContentView Grid.Row="1" Grid.Column="1">
                                     <Label 
                                         Text="{Binding English}"
-                                        FontSize="Medium" />
+                                        FontAttributes="Bold" FontSize="Default" />
                                 </ContentView>
                                 <ContentView  Grid.Row="1" Grid.Column="2">
                                     <Label
-                                        FontSize="Medium"
+                                        FontAttributes="Bold" FontSize="Default"
                                         Text="{Binding Spanish}" VerticalOptions="End" />
                                 </ContentView>
                                 <ContentView Grid.Row="1" Grid.Column="3">
 
                                     <Label 
                                         Text="{Binding Familiarity}"
-                                        FontAttributes="Bold" FontSize="Medium" />
+                                        FontAttributes="Bold" FontSize="Default" />
 
                                 </ContentView>
                             </Grid>
