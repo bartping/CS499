@@ -17,7 +17,7 @@ namespace LLL2
             InitializeComponent();
         }
 
-        /* Navigation Button Functions */
+        /* Event Handlers */
         private void HomeClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new MainPage();
@@ -27,10 +27,12 @@ namespace LLL2
         {
             App.Current.MainPage = new AddDict();
         }
+
         private void ImpClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new Import();
         }
+
         protected override bool OnBackButtonPressed()
         {
             App.Current.MainPage = new MainPage();

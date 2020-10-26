@@ -17,6 +17,33 @@
             
             <Button Text="Add to Dictionary"
                 Clicked="AddClick" />
+            <Grid Padding="-2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ContentView Grid.Row="1" Grid.Column="1">
+                    <Label 
+                                        Text="English"
+                                        FontAttributes="Bold" FontSize="Default" />
+                </ContentView>
+                <ContentView  Grid.Row="1" Grid.Column="2">
+                    <Label
+                                        FontAttributes="Bold" FontSize="Default"
+                                        Text="Spanish" />
+                </ContentView>
+                <ContentView Grid.Row="1" Grid.Column="3">
+
+                    <Label 
+                                        Text="Familiarity"
+                                        FontAttributes="Bold" FontSize="Default" />
+
+                </ContentView>
+            </Grid>
             <ListView x:Name="listView" ItemSelected="listView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -30,7 +57,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-
+                                <!-- Bindings in a ListView refer to columns in the "listView" list bound in the associated cs file -->
                                 <ContentView Grid.Row="1" Grid.Column="1">
                                     <Label 
                                         Text="{Binding English}"
@@ -39,7 +66,7 @@
                                 <ContentView  Grid.Row="1" Grid.Column="2">
                                     <Label
                                         FontAttributes="Bold" FontSize="Default"
-                                        Text="{Binding Spanish}" VerticalOptions="End" />
+                                        Text="{Binding Spanish}" />
                                 </ContentView>
                                 <ContentView Grid.Row="1" Grid.Column="3">
 
@@ -54,7 +81,7 @@
 
                 </ListView.ItemTemplate>
             </ListView>
-            <!-- <Label x:Name="descText" /> -->
+
             <Button
                 VerticalOptions="EndAndExpand"  
                 Text ="Back"

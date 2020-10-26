@@ -7,7 +7,9 @@
             
             <Label Text="This is where all of our dictionary information will go. Probably should do an import module for the bulk data"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+             />
+            
             <Button     
             Text ="View/Add to Dictionary"
             CornerRadius="45"
@@ -16,7 +18,8 @@
             Padding="16"
     
             Clicked="AddDictClick"
-                    />
+             />
+            
             <Button     
             Text ="Import Dictionary"
             CornerRadius="45"
@@ -25,7 +28,7 @@
             Padding="16"
     
             Clicked="ImpClick"
-                    />
+             />
             
             <Button     
             Text ="Back"
@@ -34,7 +37,8 @@
             TextColor="White"
             Padding="16"
             Clicked="HomeClick"
-                    />
+             />
+            
             <ContentView>
                 <Frame  BackgroundColor="Transparent" Padding="24" CornerRadius="45">
                     <ImageButton Source="lll2"
@@ -43,9 +47,8 @@
                                  CornerRadius="0"
                                  Clicked="HomeClick"
                              
-                                 />
+                     />
                 </Frame>
-
             </ContentView>
         </StackLayout>
     </ContentPage.Content>

@@ -13,12 +13,19 @@ namespace LLL2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddDict : ContentPage
     {
-        private List<DictData> dictlist = App.dataAccess.GetDictList();
-
         public AddDict()
         {
             InitializeComponent();
-            listView.ItemsSource = FilterList(this.dictlist);
+            listView.ItemsSource = FilterList(App.dataAccess.GetDictList()); /* Initialize the List View */
+        }
+
+        /* Event Handlers */
+
+
+        protected override bool OnBackButtonPressed()
+        {
+            App.Current.MainPage = new DictPage();
+            return true;
         }
 
         private void DictClick(object sender, EventArgs e)
@@ -43,16 +50,6 @@ namespace LLL2
             App.Current.MainPage = new WordPage(selectedWord);
         }
 
-        private List<DictData> FilterList(List<DictData> input)
-        {
-
-            List<DictData> matched = this.dictlist.Where(obj => obj.Spanish.Contains(espEntry.Text) && obj.English.Contains(engEntry.Text)).ToList();
-            if (matched != null)
-                return matched;
-
-            return input;
-        }
-
         private void AddClick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(engEntry.Text) && !string.IsNullOrWhiteSpace(espEntry.Text))
@@ -64,6 +61,7 @@ namespace LLL2
                     Familiarity = 0,
                     LastQuiz = DateTime.MinValue
                 });
+
                 App.dataAccess = new Database(); //refresh database on change
                 engEntry.Text = espEntry.Text = string.Empty;
             }
@@ -71,11 +69,16 @@ namespace LLL2
                 DisplayAlert("Required", "You must enter both English and Spanish words.", "OK");
         }
 
-        protected override bool OnBackButtonPressed()
-        {
-            App.Current.MainPage = new DictPage();
-            return true;
-        }
+        /* Utility functions */
 
+        private List<DictData> FilterList(List<DictData> input)
+        {
+
+            List<DictData> matched = App.dataAccess.GetDictList().Where(obj => obj.Spanish.Contains(espEntry.Text) && obj.English.Contains(engEntry.Text)).ToList();
+            if (matched != null)
+                return matched;
+
+            return input;
+        }
     }
 }

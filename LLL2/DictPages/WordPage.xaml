@@ -8,13 +8,14 @@
             <Label x:Name="EngWord"/>
             <Label x:Name="SpanWord"/>
             <Button 
-                     Text="Delete Selected"
+                     Text="Delete Word"
                      Padding="-5"
                      BackgroundColor="Red"
                      TextColor="white"
                      CornerRadius="90"
-                     FontSize="Small"
-                     Clicked="DelClick" />
+                     FontSize="Default"
+                     Clicked="DelWordClick" />
+
             <ListView x:Name="catlistView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -55,6 +56,14 @@
                 Padding="16"
                 Clicked="AddCatClick"
                 />
+            <Button 
+                     Text="Delete Selected Category"
+                     Padding="-5"
+                     BackgroundColor="Red"
+                     TextColor="white"
+                     CornerRadius="90"
+                     FontSize="Default"
+                     Clicked="DelClick" />
             
             <Frame Padding="16" BackgroundColor="Transparent" 
                     HorizontalOptions="CenterAndExpand" 

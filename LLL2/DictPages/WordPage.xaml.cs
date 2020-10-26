@@ -30,6 +30,8 @@ namespace LLL2
             fillPick();
         }
 
+        /* Event Handlers */
+
         private void BackClick(object sender, EventArgs e)
         {
             App.Current.MainPage = new AddDict();
@@ -44,17 +46,35 @@ namespace LLL2
             catlistView.ItemsSource = App.dataAccess.catData.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
         }
 
+        private void DelWordClick(object sender, EventArgs e)
+        {
+            DictData dictInstance;
+            dictInstance = App.dataAccess.GetEntry(this.activeWord.ID);
+            App.dataAccess.DeleteEntry(dictInstance);
+            DisplayAlert("Required", "Word Deleted.", "OK");
+
+            App.Current.MainPage = new AddDict();
+        }
+
         private void pickChange(object sender, EventArgs e)
         {
             catEntry.Text = catpick.SelectedItem.ToString();
         }
+
+        private void AddCatClick(object sender, EventArgs e)
+        {
+            doAdd();
+        }
+
+        /* Utility Functions */
         private void fillPick()
         {
             this.picked = App.dataAccess.CategoryList(0);
             foreach(var cat in this.picked)
                 catpick.Items.Add(cat.Category);
         }
-        private void AddCatClick(object sender, EventArgs e)
+       
+        private void doAdd()
         {
             if (!string.IsNullOrWhiteSpace(catEntry.Text))
             {
@@ -75,7 +95,6 @@ namespace LLL2
                 catEntry.Text = string.Empty;
             }
         }
-       
     }
    
 }
