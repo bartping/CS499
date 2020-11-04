@@ -4,9 +4,9 @@
              x:Class="LLL2.MainPage">
 
     <StackLayout  Padding = "10">
-        
+        <Label FontSize ="Title" Text="Welcome to the Language Learning Lab!" HorizontalTextAlignment="Center" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
 
-        <Label Text="Increase your familiarity with a language. Words and things. Take a quiz."
+        <Label Text="The Dictionary section below can be used to view the words stored in the local database, as well as adding and edit category information. The Quiz section will allow you to take a quiz on the stored words, by Category."
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         <Button     

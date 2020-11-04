@@ -55,15 +55,15 @@ namespace LLL2
             {
                 int cols = line.Split('\t').Length;
                 if (cols < 2) continue;                         /* Don't try to import a line with fewer than 2 cols */
-                newEng = line.Split('\t')[0];
+                newEng = line.Split('\t')[0].Trim().ToUpper();
                 if (newEng.Length < 1) continue;
-                newSpan = line.Split('\t')[1];
+                newSpan = line.Split('\t')[1].Trim().ToUpper();
                 if (newSpan.Length < 1) continue;
 
                 int i = 2;
                 int j = 0;
 
-                while(j < LLLSettings.MAXIMPORTCAT && i < cols && (cats[j] = line.Split('\t')[i]) != null )
+                while(j < LLLSettings.MAXIMPORTCAT && i < cols && (cats[j] = line.Split('\t')[i].Trim().ToUpper()) != null )
                 {
                     i++;
                     j++;

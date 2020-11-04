@@ -14,7 +14,7 @@ namespace LLL2
     public partial class WordPage : ContentPage
     {
 
-        DictData activeWord;
+        readonly DictData activeWord;
         List<CatList> picked;
 
         public WordPage(DictData detailWord)
@@ -26,8 +26,8 @@ namespace LLL2
             EngWord.Text = detailWord.English;
             SpanWord.Text = detailWord.Spanish;
 
-            catlistView.ItemsSource = App.dataAccess.catData.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
-            fillPick();
+            catlistView.ItemsSource = App.dataAccess.Categories.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
+            FillPick();
         }
 
         /* Event Handlers */
@@ -39,11 +39,13 @@ namespace LLL2
 
         private void DelClick(object sender, EventArgs e)
         {
-            CatData selectedCat = catlistView.SelectedItem as CatData;
+            CatData selectedCat;
+            selectedCat = catlistView.SelectedItem as CatData;
+
             if (selectedCat is null)
                 return;
             App.dataAccess.DeleteCatEntry(selectedCat);
-            catlistView.ItemsSource = App.dataAccess.catData.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
+            catlistView.ItemsSource = App.dataAccess.Categories.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
         }
 
         private void DelWordClick(object sender, EventArgs e)
@@ -56,29 +58,29 @@ namespace LLL2
             App.Current.MainPage = new AddDict();
         }
 
-        private void pickChange(object sender, EventArgs e)
+        private void PickChange(object sender, EventArgs e)
         {
             catEntry.Text = catpick.SelectedItem.ToString();
         }
 
         private void AddCatClick(object sender, EventArgs e)
         {
-            doAdd();
+            DoAdd();
         }
 
         /* Utility Functions */
-        private void fillPick()
+        private void FillPick()
         {
             this.picked = App.dataAccess.CategoryList(0);
             foreach(var cat in this.picked)
                 catpick.Items.Add(cat.Category);
         }
        
-        private void doAdd()
+        private void DoAdd()
         {
             if (!string.IsNullOrWhiteSpace(catEntry.Text))
             {
-                List<CatData> catlist = App.dataAccess.catData.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
+                List<CatData> catlist = App.dataAccess.Categories.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
                 List<CatData> matched = catlist.Where(obj => obj.Category.Equals(catEntry.Text)).ToList();
                 if (matched.Count > 0)
                 {
@@ -91,7 +93,7 @@ namespace LLL2
                     Category = catEntry.Text,
                 });
                 App.dataAccess = new Database(); //refresh database on change
-                catlistView.ItemsSource = App.dataAccess.catData.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
+                catlistView.ItemsSource = App.dataAccess.Categories.Where(obj => obj.Dict_ID.Equals(this.activeWord.ID)).ToList();
                 catEntry.Text = string.Empty;
             }
         }

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLL2.Android", "LLL2.Androi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLL2.iOS", "LLL2.iOS\LLL2.iOS.csproj", "{250E931B-54DE-428F-8CDD-AC23B0BB7213}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LLL2", "LLL2\LLL2.csproj", "{3DBD4B40-ECC9-4747-8246-1087E8377D08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LLL2", "LLL2\LLL2.csproj", "{3DBD4B40-ECC9-4747-8246-1087E8377D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,7 +47,6 @@ Global
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Debug|iPhoneSimulator.Deploy.0 = Debug|iPhoneSimulator
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
-		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Release|Any CPU.Deploy.0 = Release|iPhoneSimulator
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Release|iPhone.ActiveCfg = Release|iPhone
 		{250E931B-54DE-428F-8CDD-AC23B0BB7213}.Release|iPhone.Build.0 = Release|iPhone

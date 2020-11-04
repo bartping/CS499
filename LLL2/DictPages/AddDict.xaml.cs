@@ -44,7 +44,7 @@ namespace LLL2
             listView.ItemsSource = FilterList(newList);
         }
 
-        private void listView_ItemSelected(object sender, EventArgs e)
+        private void ListView_ItemSelected(object sender, EventArgs e)
         {
             DictData selectedWord = listView.SelectedItem as DictData;
             App.Current.MainPage = new WordPage(selectedWord);

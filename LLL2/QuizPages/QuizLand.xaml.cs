@@ -17,9 +17,9 @@ namespace LLL2
         public QuizLand()
         {
             InitializeComponent();
-            fillPick();
+            FillPick();
         }
-        private void fillPick()
+        private void FillPick()
         {
             CatList = App.dataAccess.CategoryList(1);
             int n = CatList.Count;
@@ -32,7 +32,7 @@ namespace LLL2
             App.Current.MainPage = new MainPage();
         }
 
-        private void pickChange(object sender, EventArgs e)
+        private void PickChange(object sender, EventArgs e)
         {
             var picker = (Picker)sender;
             int selectedIndex = picker.SelectedIndex;

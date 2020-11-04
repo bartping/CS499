@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout Padding="10">
             
-            <Label Text="This is where all of our dictionary information will go. Probably should do an import module for the bulk data"
+            <Label Text="This is where you can access all of the Dictionary information. The Add/Search Dictionary button will allow you to add new words, delete existing words, or add and delete a category for a word. You can search the dictionary by filling in either English, Spanish, or both. The Import option allows you to import a file from a web source (Tab delimited)."
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" 
              />

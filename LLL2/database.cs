@@ -18,10 +18,10 @@ namespace LLL2
     
     public class Database
     {
-        private SQLiteConnection database; 
-        private static object collisionLock = new object(); //prevent multiple things from updating the database at once
-        public ObservableCollection<DictData> dictData { get; set; }    
-        public ObservableCollection<CatData> catData { get; set; }
+        private readonly SQLiteConnection database; 
+        private readonly static object collisionLock = new object(); //prevent multiple things from updating the database at once
+        public ObservableCollection<DictData> Dictionary { get; set; }    
+        public ObservableCollection<CatData> Categories { get; set; }
 
 
         //Connect to Database, create tables (which will initialize them if they don't exist
@@ -32,16 +32,16 @@ namespace LLL2
               DbConnection();
 
             database.CreateTable<DictData>();
-            this.dictData =
+            this.Dictionary =
               new ObservableCollection<DictData>(database.Table<DictData>());
 
             database.CreateTable<CatData>();
-            this.catData =
+            this.Categories =
               new ObservableCollection<CatData>(database.Table<CatData>());
         }
 
         //This is for observation purponses, and potentially for exporting the database
-        public string getDocsPath()
+        public string GetDocsPath()
         {
             string docPath;
             docPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
@@ -51,7 +51,68 @@ namespace LLL2
 
         public List<DictData> GetDictList() //Bring Sqlite Dictionary Data table into C# List for easier consumption
         {
-            return database.Table<DictData>().ToList();
+            List<DictData> Dictionary;
+            List<DictData> Result = new List<DictData>();
+            Dictionary = database.Table<DictData>().ToList();
+            foreach (DictData instance in Dictionary)
+            {
+                if (Result.Count == 0)
+                {
+                    Result.Add(instance);
+                    continue;
+                }
+                int i = 0;
+                foreach(DictData sorted in Result)
+                {
+
+                    if (String.Compare(instance.English, sorted.English) > 0)
+                    {
+                        i++;
+                        continue;
+                    }
+                    else
+                    {
+                        Result.Insert(i, instance);
+                        break;
+                    }
+
+                }
+
+            }
+
+            //Dictionary.Sort();
+            return Result;
+        }
+
+        public List<DictData> GetSimilar(DictData Answer, int Lang) //Bring Sqlite Dictionary Data table into C# List for easier consumption
+        {
+            List<DictData> Dictionary;
+            List<DictData> Result = new List<DictData>();
+            Dictionary = database.Table<DictData>().ToList();
+            int length = Answer.English.Length;
+
+            foreach (DictData instance in Dictionary)
+            {
+                if (Lang == 0)
+                {
+                    if (String.Compare(instance.English.Substring(0,2),Answer.English.Substring(0,2)) == 0)
+                    {
+                        Result.Add(instance);
+                        continue;
+                    }
+                }
+                else
+                {
+                    if (instance.Spanish.Length > length - 2 || instance.Spanish.Length < length + 2)
+                    {
+                        Result.Add(instance);
+                        continue;
+                    }
+                }
+            }
+
+            //Dictionary.Sort();
+            return Result;
         }
 
         public List<CatData> GetCatList()   //Bring Sqlite Category Data table into C# List for easier consumption
@@ -211,7 +272,7 @@ namespace LLL2
                     database.Delete<CatData>(id);
                 }
             }
-            this.catData.Remove(catInstance);
+            this.Categories.Remove(catInstance);
             return id;
         }
 
@@ -222,17 +283,17 @@ namespace LLL2
             {
                 lock (collisionLock)
                 {
-                    List<CatData> removeList = this.catData.Where(obj => obj.Dict_ID.Equals(id)).ToList();
+                    List<CatData> removeList = this.Categories.Where(obj => obj.Dict_ID.Equals(id)).ToList();
                     foreach (CatData category in removeList)
                         DeleteCatEntry(category);
                     database.Delete<DictData>(id);
                 }
             }
-            this.dictData.Remove(dictInstance);
+            this.Dictionary.Remove(dictInstance);
             return id;
         }
 
-        public void doScore(DictData dictInstance, int points) /* Take a score value and add it to Familiarity */
+        public void DoScore(DictData dictInstance, int points) /* Take a score value and add it to Familiarity */
         {
             lock (collisionLock)
             {

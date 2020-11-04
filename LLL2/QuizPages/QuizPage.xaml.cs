@@ -52,12 +52,12 @@ namespace LLL2
             if (QuestionList.Ans1 == QuestionList.Answer) //Right answer
             {
                 quiztext.Text = "Correct!";
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 answer1.BackgroundColor = Color.Green;
             }
             else
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";           //Wrong answer
                 answer1.BackgroundColor = Color.Red;
             }
@@ -73,13 +73,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans2 == QuestionList.Answer)
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer2.BackgroundColor = Color.Green;
             }
             else
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer2.BackgroundColor = Color.Red;
             }
@@ -94,13 +94,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans3 == QuestionList.Answer)
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer3.BackgroundColor = Color.Green;
             }
             else
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer3.BackgroundColor = Color.Red;
             }
@@ -115,13 +115,13 @@ namespace LLL2
             answer4.IsEnabled = false;
             if (QuestionList.Ans4 == QuestionList.Answer)
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), 1);
                 quiztext.Text = "Correct!";
                 answer4.BackgroundColor = Color.Green;
             }
             else
             {
-                App.dataAccess.doScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
+                App.dataAccess.DoScore(App.dataAccess.GetEntry(QuestionList.AnsID), -1);
                 quiztext.Text = "Incorrect!";
                 answer4.BackgroundColor = Color.Red;
             }
@@ -129,28 +129,58 @@ namespace LLL2
             App.Current.MainPage = new QuizPage();
         }   
 
-        protected int GetWrong(List<int> Used,int size)     /* Choose some wrong answers from the Database to fill in */
+        protected string GetWrong(List<string> Used, int size, int lang)     /* Choose some wrong answers from the Database to fill in */
         {   //Let's get a wrong answer! Need the list of used items and the size of the dictionary
 
             Random rnd = new Random();
             int Pos = rnd.Next(0, size); //Pick a number
+            string choice;
+            if (lang == 0 )
+                choice = App.dataAccess.GetEntry(Pos).English;
+            else
+                choice = App.dataAccess.GetEntry(Pos).Spanish;
+
             int noloop = 0;             //Loop Avoidance
-            while (Used.Contains(Pos) && noloop < 100) //if we chose the one that's already used, choose another
+            while (Used.Contains(choice) && noloop < 100) //if we chose the one that's already used, choose another
             {   //This is a bit hokey. Maybe improve somehow? perhaps increment and check again?
                 Pos = rnd.Next(0, size);
+                choice = App.dataAccess.GetEntry(Pos).English;
                 noloop++; //only try 100 times to avoid duplicate so we don't get stuck. Should not need more than that, but...
             }
-            return Pos;  //Return the position in the dictionary of a valid wrong answer
+            if(lang == 0)
+                return App.dataAccess.GetEntry(Pos).English;  //Return the position in the dictionary of a valid wrong answer
+            else
+                return App.dataAccess.GetEntry(Pos).Spanish;
         }
+
+        protected string MakeWrong(List<int> Used, int size)     /* Choose some wrong answers from the Database to fill in */
+        {   //Let's get a wrong answer! Need the list of used items and the size of the dictionary
+
+            Random rnd = new Random();
+            string word = QuestionList.Answer;
+            List<int> Consonants = new List<int>();
+            string test = "djrs";
+            int i = 0;
+            foreach (char letter in word){
+                if (test.Contains(letter))
+                    Consonants.Add(i++);
+            }
+             
+
+            return word;
+        }
+        
+
+        
 
         protected void QuestionText()               /* Retrieve a word from the word list and generate a multiple choice question */
         {
             string useCat = LLLSettings.currentCategory;
             List<AllData> FullDict = App.dataAccess.GetAllList(useCat);
             List<AllData> filtered;  // dictionary list filtered by category
-            filtered = FullDict.Where(obj => obj.Category.Equals(useCat)).ToList();
+            filtered = FullDict.Where(obj => obj.Category.Equals(useCat)).ToList(); 
 
-            List<int> Used = new List<int>();   //keep track of which words we've already used as a choice
+            List<string> Used = new List<string>();   //keep track of which words we've already used as a choice
 
             int catSize = filtered.Count;
             if(catSize < 4)
@@ -166,70 +196,48 @@ namespace LLL2
             int findWord = rnd.Next(0, catSize);
             int quizWord;                       //Get the ID for the chosen word
             quizWord = filtered[findWord].Dict_ID;
-            int wrong;                          //placeholder for the 'wrong' answer chosen  
-            QuestionList.AnsID = quizWord;      //track the DictData.ID of the correct answer for later processing
-            Used.Add(findWord);                 //Add correct answer to the list of words already chosen
-            int isEng = rnd.Next(0, 2);         //Coin toss: English or Spanish?
-            if (isEng == 0)     //Asked word is in Spanish
-            {
 
-                QuestionList.Word = filtered[findWord].Spanish; // Could probably just keep track of the ID and use that later to get the info from the DB
+            QuestionList.AnsID = quizWord;      //track the DictData.ID of the correct answer for later processing
+           
+            int isEng = rnd.Next(0, 2);         //Coin toss: English or Spanish?
+
+            if (isEng == 0)
+            {
+                QuestionList.Word = filtered[findWord].Spanish;
                 QuestionList.Answer = filtered[findWord].English;
+            }
+            else
+            {
+                QuestionList.Word = filtered[findWord].English;
+                QuestionList.Answer = filtered[findWord].Spanish;
+            }
+
+                Used.Add(QuestionList.Answer);                    //Add the correct answer to the list of words for answers
                 //Populate all answers with wrong answers
-                QuestionList.Ans1 = filtered[wrong = GetWrong(Used, catSize)].English;
-                Used.Add(wrong);
-                QuestionList.Ans2 = filtered[wrong = GetWrong(Used, catSize)].English;
-                Used.Add(wrong);
-                QuestionList.Ans3 = filtered[wrong = GetWrong(Used, catSize)].English;
-                Used.Add(wrong);
-                QuestionList.Ans4 = filtered[wrong = GetWrong(Used, catSize)].English;
+                QuestionList.Ans1 = GetWrong(Used, catSize, isEng);
+                Used.Add(QuestionList.Ans1);
+                QuestionList.Ans2 = GetWrong(Used, catSize, isEng);
+                Used.Add(QuestionList.Ans2);
+                QuestionList.Ans3 = GetWrong(Used, catSize, isEng);
+                Used.Add(QuestionList.Ans3);
+                QuestionList.Ans4 = GetWrong(Used, catSize, isEng);
 
                 switch (corPos)  //Populate correct answer position with the correct answer
                 {
                     case 1:
-                        QuestionList.Ans1 = filtered[findWord].English;
+                        QuestionList.Ans1 = QuestionList.Answer;
                         break;
                     case 2:
-                        QuestionList.Ans2 = filtered[findWord].English;
+                        QuestionList.Ans2 = QuestionList.Answer;
                         break;
                     case 3:
-                        QuestionList.Ans3 = filtered[findWord].English;
+                        QuestionList.Ans3 = QuestionList.Answer;
                         break;
                     case 4:
-                        QuestionList.Ans4 = filtered[findWord].English;
+                        QuestionList.Ans4 = QuestionList.Answer;
                         break;
                 }
 
-            }
-            else  //Same as above, but asked word is in English
-            {
-                QuestionList.Word = filtered[findWord].English;
-                QuestionList.Answer = filtered[findWord].Spanish;
-
-                QuestionList.Ans1 = filtered[wrong = GetWrong(Used, catSize)].Spanish;
-                Used.Add(wrong);
-                QuestionList.Ans2 = filtered[wrong = GetWrong(Used, catSize)].Spanish;
-                Used.Add(wrong);
-                QuestionList.Ans3 = filtered[wrong = GetWrong(Used, catSize)].Spanish;
-                Used.Add(wrong);
-                QuestionList.Ans4 = filtered[wrong = GetWrong(Used, catSize)].Spanish;
-
-                switch (corPos)
-                {
-                    case 1:
-                        QuestionList.Ans1 = filtered[findWord].Spanish;
-                        break;
-                    case 2:
-                        QuestionList.Ans2 = filtered[findWord].Spanish;
-                        break;
-                    case 3:
-                        QuestionList.Ans3 = filtered[findWord].Spanish;
-                        break;
-                    case 4:
-                        QuestionList.Ans4 = filtered[findWord].Spanish;
-                        break;
-                }
-            }
 
             //Fill in the text on QuizPage.xaml
             quiztext.Text = QuestionList.Word;

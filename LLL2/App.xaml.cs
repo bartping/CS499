@@ -19,7 +19,8 @@ namespace LLL2
          {
             InitializeComponent();
             dataAccess = new Database();
-            Import.DoImport(LLLSettings.impPath);
+            if (dataAccess.GetDictList().Count==0) //run the import at start time if there's no data
+                Import.DoImport(LLLSettings.impPath);
             App.Current.MainPage = new MainPage();
          }
         

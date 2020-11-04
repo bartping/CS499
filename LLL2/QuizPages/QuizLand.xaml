@@ -4,10 +4,15 @@
              x:Class="LLL2.QuizLand">
     <ContentPage.Content>
         <StackLayout Padding="10">
+            
+            <Label Text="Choose a Category below, or leave blank for All Words"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            
             <Picker x:Name="catpick"
                 Title="Choose a Category"
                 SelectedIndex="0"
-                SelectedIndexChanged="pickChange"
+                SelectedIndexChanged="PickChange"
              />
 
             <Frame Padding="16" BackgroundColor="Transparent" 

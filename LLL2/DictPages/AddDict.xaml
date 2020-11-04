@@ -26,17 +26,17 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <ContentView Grid.Row="1" Grid.Column="1">
+                <ContentView Grid.Row="0" Grid.Column="1">
                     <Label 
                                         Text="English"
-                                        FontAttributes="Bold" FontSize="Default" />
+                                        FontAttributes="Bold" FontSize="Medium" />
                 </ContentView>
-                <ContentView  Grid.Row="1" Grid.Column="2">
+                <ContentView  Grid.Row="0" Grid.Column="2">
                     <Label
-                                        FontAttributes="Bold" FontSize="Default"
+                                        FontAttributes="Bold" FontSize="Medium"
                                         Text="Spanish" />
                 </ContentView>
-                <ContentView Grid.Row="1" Grid.Column="3">
+                <ContentView Grid.Row="0" Grid.Column="3">
 
                     <Label 
                                         Text="Familiarity"
@@ -44,7 +44,7 @@
 
                 </ContentView>
             </Grid>
-            <ListView x:Name="listView" ItemSelected="listView_ItemSelected">
+            <ListView x:Name="listView" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
